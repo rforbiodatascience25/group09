@@ -33,6 +33,13 @@ This is my first text ever and i will also add some R chunk because I can:
 2+2
 ```
 
+### New analysis :)
+
+```{r}
+analysis_df <- c("Selene", "Marta", "Tommaso", "Sergi")
+sort(analysis_df)
+```
+
 ## Sergi
 
 100 gramos de harina
