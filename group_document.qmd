@@ -14,6 +14,15 @@ Team Captain :)
 x <- 22
 ```
 
+### New feature
+
+this is a new feature of my section
+
+```{r}
+y <- 23
+x+y
+```
+
 ## Marta
 
 This is my section not Selina
