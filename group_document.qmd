@@ -13,3 +13,41 @@ editor: visual
 ## Tommaso
 
 ## Sergi
+
+100 gramos de harina
+
+100 gramos de mantequilla
+
+500 ml de leche
+
+```{r}
+
+```
+
+300 ml de caldo de pollo
+
+200 gramos de restos de pollo picado o pechuga de pollo cocida
+
+Nuez moscada
+
+Sal
+
+Pimienta
+
+Aceite de oliva virgen extra
+
+```{r}
+
+```
+
+**Para el rebozado**
+
+-   Harina
+
+-   Huevo
+
+-   Pan rallado
+
+### **Hacer croquetas de pollo caseras**
+
+1.- Comenzamos en una sartén o cazo grande derritiendo la mantequilla.
