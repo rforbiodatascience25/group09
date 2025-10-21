@@ -7,6 +7,10 @@ editor: visual
 bibliography: references.bib
 ---
 
+```{r}
+
+```
+
 **Authors**:
 
 -   Selina Friesen - s252027
@@ -44,3 +48,41 @@ pca_fit <- biopsy |>
   select(where(is.numeric)) |>
   prcomp(scale = TRUE)
 ```
+
+## Variance explained by PC
+
+Each PC explains different amount of variance, the first PC explains the most variance, the second PC the second most and so on.
+
+Extract the PCs from the pca_fit with their standard deviation, variance percentage they explain and the cumulative percentage.
+
+```{r}
+pca_fit |> 
+  tidy(matrix = "eigenvalues")
+```
+
+Visualization via box-plot:
+
+```{r}
+pca_fit |>
+  tidy(matrix = "eigenvalues") |>
+  ggplot(mapping = aes(PC, 
+                       percent))+
+  geom_col(fill = "blue", 
+           alpha = 0.7) +
+  geom_line(aes(y = cumulative, 
+                color = "Cumulative"))+
+  geom_hline(aes(color="90%",
+                 yintercept=0.9),
+             linetype= "dotted")+
+  scale_x_continuous(breaks = 1:9)+
+  scale_y_continuous(labels = scales::percent_format())+
+  labs(title= "Explained Variance (per PC and cumulative)",
+       x = "Principal Component",
+       y = "Percentage",
+       fill = NULL,
+       color = NULL)+
+  theme_minimal()
+  
+```
+
+The plot shows that the first PC explains 65% of the variance, 90% of the variance is explained by the first 5 components.
