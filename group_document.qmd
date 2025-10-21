@@ -85,6 +85,8 @@ Aceite de oliva virgen extra
 
 -   Pan rallado
 
-### **Hacer croquetas de pollo caseras**
+### **NEW FEATURE**
 
-1.- Comenzamos en una sartén o cazo grande derritiendo la mantequilla.
+```{r}
+croqueta <- 22
+```
