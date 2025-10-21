@@ -49,7 +49,6 @@ pca_fit <- biopsy |>
   prcomp(scale = TRUE)
 ```
 
-
 ```{r}
 pca_fit |> 
   augment(biopsy) |>  
@@ -80,8 +79,7 @@ pca_fit |>
 
 In this case we do not see a clear separation anymore, so what is driving PCA3 does not make a different.
 
-Let's dive into the different characteristics driving the PCAs to get into the different between these two biopsies.
-## Look at the data in PC coordinates
+Let's dive into the different characteristics driving the PCAs to get into the different between these two biopsies. \## Look at the data in PC coordinates
 
 ```{r}
 arrow_style <- arrow(
@@ -123,6 +121,7 @@ pca_fit |>
 
 In this case, PC3 is mostly driven by "clump_thickness". In relations to the previous analysis, this means that the clump thickness cannot help us distinguish benign from malignant biopsies.
 
+Then we try to represent whether benign and malignant biopsies are driving the principal component 1 and 2, meaning the ones that account for the higher level of variability in our data set
 
 ## Variance explained by PC
 
@@ -161,4 +160,3 @@ pca_fit |>
 ```
 
 The plot shows that the first PC explains 65% of the variance, 90% of the variance is explained by the first 5 components.
-Then we try to represent whether benign and malignant biopsies are driving the principal component 1 and 2, meaning the ones that account for the higher level of variability in our data set
