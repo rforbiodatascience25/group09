@@ -7,10 +7,6 @@ editor: visual
 bibliography: references.bib
 ---
 
-```{r}
-
-```
-
 **Authors**:
 
 -   Selina Friesen - s252027
@@ -23,31 +19,47 @@ bibliography: references.bib
 
 -   Ivan Musalyk - s225210
 
-In the following assigment we will be working with the dataset from the dataset, which comes originally from the MASS package. It is a breast cancer dataset from the University of Wisconsin Hospitals, Madison from Dr.William H. Wolberg. He assessed biopsies of breast tumors for 699 patients; each of nine attributes was scored on a scale of 1 to 10. The true outcome (benign/malignant) is also known.
+In this assignment, we analyze the biopsy dataset originally included in the MASS package. This dataset, collected by Dr. William H. Wolberg at the University of Wisconsin Hospitals, contains 699 breast tumor biopsies evaluated for nine morphological features, each scored from 1 to 10. The dataset also provides the known outcome (benign or malignant).
 
-## Load the libraries
+Our goal is to perform a Principal Component Analysis (PCA) to identify the main axes of variation in the dataset and explore how these relate to biopsy outcomes.
+
+------------------------------------------------------------------------
+
+## Load libraries
 
 ```{r}
 #| warning: false
+#| message: false
+
 library(tidyverse)
 library(broom)  
 library(cowplot)
 
 ```
 
+------------------------------------------------------------------------
+
 ## Load the dataset
 
 ```{r}
+#| message: false
+
 biopsy <- read_csv("https://wilkelab.org/classes/SDS348/data_sets/biopsy.csv")
 ```
 
+------------------------------------------------------------------------
+
 ## Create a PCA
+
+PCA requires only numeric predictors. We therefore remove non-numeric columns and scale all variables to unit variance so that features measured on different scales contribute equally.
 
 ```{r}
 pca_fit <- biopsy |>
   select(where(is.numeric)) |>
   prcomp(scale = TRUE)
 ```
+
+We join scores back to the original data using augment() so we can color by outcome.
 
 ```{r}
 pca_fit |> 
@@ -61,9 +73,13 @@ pca_fit |>
 
 ```
 
-It can be observed that the benign biopsies cluster together meaning they have similar characteristics, while they cluster apart from the malignant biopsies. However, let's take a look into other combinations of PCAs.
+**Interpretation:**
 
-Let's compared PCA2 and PCA3
+It can be observed that the benign biopsies cluster together meaning they have similar characteristics, while they cluster apart from the malignant biopsies. Therefore, the first principal component (PC1) captures the major variance associated with biopsy outcome. However, let's take a look into other combinations of PCAs.
+
+------------------------------------------------------------------------
+
+## Alternative components: PCA2 and PCA3
 
 ```{r}
 pca_fit |> 
@@ -77,9 +93,17 @@ pca_fit |>
 
 ```
 
-In this case we do not see a clear separation anymore, so what is driving PCA3 does not make a different.
+**Interpretation:**
 
-Let's dive into the different characteristics driving the PCAs to get into the different between these two biopsies. \## Look at the data in PC coordinates
+There is minor separation in PC2, but PC3 does not separate the outcomes well, suggesting that the biological differences are mainly captured by PC1.
+
+------------------------------------------------------------------------
+
+## Rotation matrix
+
+Let's dive into the different characteristics driving the PCAs to get into the different between these two biopsies.
+
+Loadings represent how each original variable contributes to a principal component. We visualize them as arrows originating at (0, 0).
 
 ```{r}
 arrow_style <- arrow(
@@ -101,7 +125,9 @@ pca_fit |>
   theme_minimal_grid(12)
 ```
 
-To understand which variables are responsible for the PCs, we are visualizing the different PCs. Here, we can see how "mitoses" is the variable that mostly drives the PC2. Taken together, this shows that mitoses is the variable that mostly distinguishes benign and malignant biopsies in this dataset.
+**Interpretation:**
+
+The variable “mitoses” contributes strongly to PC2, suggesting that differences in mitotic activity help distinguish benign and malignant tumors.
 
 ```{r}
 pca_fit |>
@@ -119,15 +145,13 @@ pca_fit |>
   theme_minimal_grid(12)
 ```
 
-In this case, PC3 is mostly driven by "clump_thickness". In relations to the previous analysis, this means that the clump thickness cannot help us distinguish benign from malignant biopsies.
+**Interpretation:**
 
-Then we try to represent whether benign and malignant biopsies are driving the principal component 1 and 2, meaning the ones that account for the higher level of variability in our data set
+“Clump thickness” is most associated with PC3, but since PC3 explains little variation, this variable contributes less to outcome separation.
 
 ## Variance explained by PC
 
-Each PC explains different amount of variance, the first PC explains the most variance, the second PC the second most and so on.
-
-Extract the PCs from the pca_fit with their standard deviation, variance percentage they explain and the cumulative percentage.
+Each principal component accounts for a portion (percent) of the total variance. We extract this information using tidy(matrix = "eigenvalues").
 
 ```{r}
 pca_fit |> 
@@ -159,4 +183,6 @@ pca_fit |>
   
 ```
 
-The plot shows that the first PC explains 65% of the variance, 90% of the variance is explained by the first 5 components.
+**Interpretation:**
+
+PC1 explains approximately 65% of the total variance. Together, the first five components explain about 90%, indicating that most of the data’s structure can be represented with reduced dimentions.
