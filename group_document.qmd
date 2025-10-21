@@ -8,9 +8,30 @@ editor: visual
 
 ## Selina
 
+Team Captain :)
+
+```{r}
+x <- 22
+```
+
 ## Marta
 
+This is my section not Selina
+
+```{r}
+1+1
+3-1
+heloow <- 23
+
+```
+
 ## Tommaso
+
+This is my first text ever and i will also add some R chunk because I can:
+
+```{r}
+2+2
+```
 
 ## Sergi
 
