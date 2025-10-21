@@ -37,3 +37,10 @@ library(cowplot)
 biopsy <- read_csv("https://wilkelab.org/classes/SDS348/data_sets/biopsy.csv")
 ```
 
+## Create a PCA
+
+```{r}
+pca_fit <- biopsy |>
+  select(where(is.numeric)) |>
+  prcomp(scale = TRUE)
+```
