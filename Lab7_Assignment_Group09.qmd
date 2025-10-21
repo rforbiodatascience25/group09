@@ -1,0 +1,20 @@
+---
+title: "Lab 7 Assignment: Group 09"
+format:
+  html:
+    embed-resources: true
+editor: visual
+bibliography: references.bib
+---
+
+**Authors**:
+
+-   Selina Friesen - s252027
+
+-   Marta Sánchez - s254791
+
+-   Sergi Fornós - s253693
+
+-   Tommaso Ballocci - tobal
+
+-   Ivan Musalyk - s225210
