@@ -8,6 +8,12 @@ editor: visual
 
 ## Selina
 
+Team Captain :)
+
+```{r}
+x <- 22
+```
+
 ## Marta
 
 ## Tommaso
