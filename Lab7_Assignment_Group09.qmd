@@ -19,6 +19,21 @@ bibliography: references.bib
 
 -   Ivan Musalyk - s225210
 
+In the following assigment we will be working with the dataset from the dataset, which comes originally from the MASS package. It is a breast cancer dataset from the University of Wisconsin Hospitals, Madison from Dr.William H. Wolberg. He assessed biopsies of breast tumors for 699 patients; each of nine attributes was scored on a scale of 1 to 10. The true outcome (benign/malignant) is also known.
+
+## Load the libraries
+
 ```{r}
-data <- ""
+#| warning: false
+library(tidyverse)
+library(broom)  
+library(cowplot)
+
+```
+
+## Load the dataset
+
+```{r}
+biopsy <- read_csv("https://wilkelab.org/classes/SDS348/data_sets/biopsy.csv")
+
 ```
