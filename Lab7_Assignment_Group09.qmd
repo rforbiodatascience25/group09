@@ -37,3 +37,7 @@ library(cowplot)
 biopsy <- read_csv("https://wilkelab.org/classes/SDS348/data_sets/biopsy.csv")
 
 ```
+
+```{r}
+biospy_local <- read_csv("data/biopsy.csv")
+```
