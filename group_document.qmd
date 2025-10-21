@@ -12,4 +12,10 @@ editor: visual
 
 ## Tommaso
 
+This is my first text ever and i will also add some R chunk because I can:
+
+```{r}
+2+2
+```
+
 ## Sergi
