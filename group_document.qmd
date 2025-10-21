@@ -10,6 +10,15 @@ editor: visual
 
 ## Marta
 
+This is my section not Selina
+
+```{r}
+1+1
+3-1
+heloow <- 23
+
+```
+
 ## Tommaso
 
 ## Sergi
