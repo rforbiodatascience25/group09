@@ -44,3 +44,37 @@ pca_fit <- biopsy |>
   select(where(is.numeric)) |>
   prcomp(scale = TRUE)
 ```
+
+Then we try to represent whether benign and malignant biopsies are driving the principal component 1 and 2, meaning the ones that account for the higher level of variability in our data set
+
+```{r}
+pca_fit |> 
+  augment(biopsy) |>  
+  ggplot(aes(.fittedPC1, .fittedPC2, color = outcome)) + 
+  geom_point(size = 1.5) +
+  scale_color_manual(
+    values = c(malignant = "black", benign = "darkgreen")
+  ) +
+  theme_half_open(12) + background_grid()
+
+```
+
+It can be observed that the benign biopsies cluster together meaning they have similar characteristics, while they cluster apart from the malignant biopsies. However, let's take a look into other combinations of PCAs.
+
+Let's compared PCA2 and PCA3
+
+```{r}
+pca_fit |> 
+  augment(biopsy) |>  
+  ggplot(aes(.fittedPC2, .fittedPC3, color = outcome)) + 
+  geom_point(size = 1.5) +
+  scale_color_manual(
+    values = c(malignant = "black", benign = "darkgreen")
+  ) +
+  theme_half_open(12) + background_grid()
+
+```
+
+In this case we do not see a clear separation anymore, so what is driving PCA3 does not make a different.
+
+Let's dive into the different characteristics driving the PCAs to get into the different between these two biopsies.
